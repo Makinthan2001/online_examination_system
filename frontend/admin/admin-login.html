@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="admin-login.js"></script>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-blue-100 via-white to-blue-100 flex items-center justify-center p-4"
+  >
+    <div class="w-full max-w-md">
+      <div class="mb-6">
+        <button
+          onclick="window.location.href='../home.html'"
+          class="mb-4 flex items-center text-blue-600 hover:underline"
+        >
+          <svg
+            class="h-4 w-4 mr-2"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <use href="#arrow-left" />
+          </svg>
+          Back to Home
+        </button>
+      </div>
+
+      <div class="bg-white rounded-lg shadow-lg">
+        <div class="text-center p-6 border-b">
+          <div class="flex justify-center mb-4">
+            <div class="bg-blue-100 p-3 rounded-full">
+              <svg
+                class="h-8 w-8 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <use href="#shield" />
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-2xl font-semibold">Admin Login</h2>
+          <p class="text-gray-500 text-sm">
+            Enter your credentials to access the admin panel
+          </p>
+        </div>
+
+        <div class="p-6">
+          <form id="adminLoginForm" class="space-y-4">
+            <div class="space-y-2">
+              <label for="username" class="text-sm font-medium">Username</label>
+              <input
+                type="text"
+                id="username"
+                class="w-full border rounded px-3 py-2"
+                placeholder="Enter admin username"
+                required
+              />
+            </div>
+            <div class="space-y-2">
+              <label for="password" class="text-sm font-medium">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="w-full border rounded px-3 py-2"
+                placeholder="Enter password"
+                required
+              />
+            </div>
+            <button
+              type="submit"
+              id="loginBtn"
+              class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+            >
+              Login
+            </button>
+          </form>
+
+          <div
+            class="mt-6 p-3 bg-gray-100 rounded-lg text-center text-xs text-gray-500"
+          >
+            Demo: admin1 / admin123
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <svg style="display: none">
+      <symbol id="arrow-left" viewBox="0 0 24 24">
+        <path d="M19 12H5M12 19l-7-7 7-7" />
+      </symbol>
+      <symbol id="shield" viewBox="0 0 24 24">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </symbol>
+    </svg>
+
+    <!-- Login logic is now handled in admin-login.js -->
+  </body>
+</html>

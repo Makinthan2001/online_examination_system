@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exam Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-white min-h-screen text-gray-800">
+    <div class="flex min-h-screen">
+      <!-- Sidebar (inline, not iframe) -->
+      <nav
+        class="sidebar bg-white border-r"
+        aria-label="Main Navigation"
+        style="
+          width: 220px;
+          min-width: 220px;
+          height: 100vh;
+          display: flex;
+          flex-direction: column;
+        "
+      >
+        <div class="sidebar-header font-bold text-2xl px-6 py-4 border-b">
+          Online Exam
+        </div>
+        <!-- Sidebar removed for cleanup. Use view-results.html for results. -->
+        <div class="px-6 pb-6 mt-auto">
+          <button
+            onclick="logout()"
+            class="w-full text-sm bg-red-100 text-red-600 px-3 py-2 rounded"
+          >
+            Logout
+          </button>
+        </div>
+      </nav>
+
+      <!-- Main Content -->
+      <div class="flex-1">
+        <nav class="bg-white shadow p-4 mb-6">
+          <div class="container mx-auto text-xl font-bold">Result</div>
+        </nav>
+        <div class="max-w-6xl mx-auto p-6">
+          <div class="overflow-x-auto">
+            <table
+              class="min-w-full bg-white shadow-md rounded border border-gray-200"
+            >
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="py-3 px-4 text-left font-semibold">Username</th>
+                  <th class="py-3 px-4 text-left font-semibold">Exam Name</th>
+                  <th class="py-3 px-4 text-left font-semibold">Marks</th>
+                </tr>
+              </thead>
+              <tbody id="result-body">
+                <!-- Sample row -->
+                <tr class="border-t">
+                  <td class="py-2 px-4">john123</td>
+                  <td class="py-2 px-4">Math Final</td>
+                  <td class="py-2 px-4">85</td>
+                </tr>
+                <!-- More rows can be added dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Question</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gray-100">
+  <div class="flex min-h-screen">
+    <!-- Sidebar (inline, not iframe) -->
+    <nav class="sidebar bg-white border-r" aria-label="Main Navigation" style="width:220px; min-width:220px; height:100vh; display:flex; flex-direction:column;">
+      <div class="sidebar-header font-bold text-2xl px-6 py-4 border-b">Online Exam</div>
+      <ul class="sidebar-menu flex-1 px-0 py-4" style="list-style:none; margin:0;">
+        <li tabindex="0" role="menuitem" aria-label="Dashboard" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='admin-dashboard.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" fill="#64748b"/></svg>
+          <span>Dashboard</span>
+        </li>
+        <!-- <li tabindex="0" role="menuitem" aria-label="Add Question" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='add-question.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M12 4v16m8-8H4" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Add Question</span>
+        </li> -->
+        <li tabindex="0" role="menuitem" aria-label="Add Student" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='add-student.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="12" cy="7" r="4" stroke="#64748b" stroke-width="2"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Add Student</span>
+        </li>
+        <li tabindex="0" role="menuitem" aria-label="Manage Students" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='manage-students.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M4 4h16v2H4zm0 4h10v2H4zm0 4h16v2H4zm0 4h10v2H4z" fill="#64748b"/></svg>
+          <span>Manage Students</span>
+        </li>
+        <li tabindex="0" role="menuitem" aria-label="Create Exam" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='create-exam.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M19 3H5a2 2 0 0 0-2 2v14l4-4h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Create Exam</span>
+        </li>
+        <li tabindex="0" role="menuitem" aria-label="Manage Exams" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='manage-exams.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M5 13l4 4L19 7" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Manage Exams</span>
+        </li>
+        <li tabindex="0" role="menuitem" aria-label="Result" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='view-results.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M3 17a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4V7a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v10z" stroke="#64748b" stroke-width="2"/><path d="M8 11h8M8 15h6" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Result</span>
+        </li>
+      </ul>
+      <div class="px-6 pb-6 mt-auto">
+        <button onclick="logout()" class="w-full text-sm bg-red-100 text-red-600 px-3 py-2 rounded">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex-1">
+      <!-- Navbar -->
+      <nav class="bg-white shadow p-4 mb-6">
+        <div class="container mx-auto text-xl font-bold">Add Question</div>
+      </nav>
+      <div class="max-w-2xl mx-auto px-4 py-6">
+    <button onclick="goBack()" class="text-blue-600 text-sm mb-4 flex items-center">
+      <svg class="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+      </svg> Back to Exams
+    </button>
+
+    <div class="bg-white rounded-lg shadow p-6">
+      <h2 class="text-xl font-bold mb-4 flex items-center">
+        <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
+        </svg>
+        Add Question
+      </h2>
+
+      <form id="questionForm" class="space-y-4">
+        <div>
+          <label class="block mb-1 text-sm font-medium">Select Exam *</label>
+          <select id="examSelect" required class="w-full border rounded px-3 py-2">
+            <option value="">Choose an exam</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block mb-1 text-sm font-medium">Question Text *</label>
+          <textarea id="questionText" required rows="3" class="w-full border rounded px-3 py-2"></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <label class="block mb-1 text-sm font-medium">Option A *</label>
+            <input id="optionA" required type="text" class="w-full border rounded px-3 py-2" />
+          </div>
+          <div>
+            <label class="block mb-1 text-sm font-medium">Option B *</label>
+            <input id="optionB" required type="text" class="w-full border rounded px-3 py-2" />
+          </div>
+          <div>
+            <label class="block mb-1 text-sm font-medium">Option C *</label>
+            <input id="optionC" required type="text" class="w-full border rounded px-3 py-2" />
+          </div>
+          <div>
+            <label class="block mb-1 text-sm font-medium">Option D *</label>
+            <input id="optionD" required type="text" class="w-full border rounded px-3 py-2" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block mb-1 text-sm font-medium">Correct Answer *</label>
+          <input id="correctAnswer" required type="text" placeholder="Enter exact text of correct option" class="w-full border rounded px-3 py-2"/>
+          <p class="text-xs text-gray-500 mt-1">Must match one of the options above</p>
+        </div>
+
+        <div class="flex justify-end gap-3">
+          <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+            Add Question
+          </button>
+          <button type="button" onclick="done()" class="border border-gray-300 text-gray-700 px-4 py-2 rounded">
+            Done
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function getExams() {
+      return JSON.parse(localStorage.getItem('exams') || '[]');
+    }
+
+    function getQuestions() {
+      return JSON.parse(localStorage.getItem('questions') || '[]');
+    }
+
+    function saveQuestions(questions) {
+      localStorage.setItem('questions', JSON.stringify(questions));
+    }
+
+    function populateExamSelect() {
+      const exams = getExams();
+      const select = document.getElementById('examSelect');
+      exams.forEach(exam => {
+        const option = document.createElement('option');
+        option.value = exam.exam_id;
+        option.textContent = `${exam.exam_name} (${exam.subject || ''})`;
+        select.appendChild(option);
+      });
+    }
+
+    function logout() {
+      localStorage.removeItem('currentUser');
+      window.location.href = '/index.html';
+    }
+
+    function goBack() {
+      window.location.href = '/admin/exams.html';
+    }
+
+    function done() {
+      window.location.href = '/admin/exams.html';
+    }
+
+    document.getElementById('questionForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const exam_id = document.getElementById('examSelect').value;
+      const question_text = document.getElementById('questionText').value.trim();
+      const option_a = document.getElementById('optionA').value.trim();
+      const option_b = document.getElementById('optionB').value.trim();
+      const option_c = document.getElementById('optionC').value.trim();
+      const option_d = document.getElementById('optionD').value.trim();
+      const correct_answer = document.getElementById('correctAnswer').value.trim();
+
+      const questions = getQuestions();
+      const question_id = questions.length ? Math.max(...questions.map(q => q.question_id)) + 1 : 1;
+
+      questions.push({
+        question_id,
+        exam_id: parseInt(exam_id),
+        question_text,
+        option_a,
+        option_b,
+        option_c,
+        option_d,
+        correct_answer
+      });
+
+      saveQuestions(questions);
+      alert("✅ Question added!");
+      this.reset();
+    });
+
+    // On load
+    populateExamSelect();
+  </script>
+</body>
+</html>

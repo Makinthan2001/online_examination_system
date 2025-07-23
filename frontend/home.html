@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Online Examination System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body
+    class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-gray-50"
+  >
+    <div class="container mx-auto px-4 py-12">
+      <!-- Logo and Title -->
+      <div class="text-center mb-12">
+        <div class="flex justify-center mb-6">
+          <div class="bg-blue-100 p-4 rounded-full">
+            <!-- Book Icon -->
+            <svg
+              class="h-12 w-12 text-blue-600"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4 19.5A2.5 2.5 0 006.5 22h11a2.5 2.5 0 002.5-2.5V5.118a2 2 0 00-.765-1.58l-6-5a2 2 0 00-2.47 0l-6 5A2 2 0 004 5.118V19.5z"
+              />
+            </svg>
+          </div>
+        </div>
+        <h1 class="text-4xl font-bold text-gray-800 mb-4">
+          Online Examination System
+        </h1>
+        <p class="text-xl text-gray-500 max-w-2xl mx-auto">
+          A comprehensive platform for conducting secure online examinations
+          with advanced features for both administrators and students.
+        </p>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <!-- Admin Portal Card -->
+        <div
+          class="bg-white rounded-lg p-6 shadow hover:shadow-lg transition-shadow duration-300 text-center"
+        >
+          <div class="flex justify-center mb-4">
+            <div class="bg-blue-100 p-3 rounded-full">
+              <!-- Shield Icon -->
+              <svg
+                class="h-8 w-8 text-blue-600"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-2xl font-semibold text-gray-800">Admin Portal</h2>
+          <p class="text-gray-500 mb-6">
+            Manage students, create exams, add questions, and view comprehensive
+            results
+          </p>
+
+          <div class="space-y-3 mb-6 text-gray-500 text-sm">
+            <div class="flex items-center justify-center space-x-2">
+              <svg
+                class="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M17 21v-2a4 4 0 00-3-3.87M7 21v-2a4 4 0 013-3.87M12 7a4 4 0 110-8 4 4 0 010 8z"
+                />
+              </svg>
+              <span>Student Management</span>
+            </div>
+            <div class="flex items-center justify-center space-x-2">
+              <svg
+                class="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M4 19.5A2.5 2.5 0 006.5 22h11a2.5 2.5 0 002.5-2.5V5.118a2 2 0 00-.765-1.58l-6-5a2 2 0 00-2.47 0l-6 5A2 2 0 004 5.118V19.5z"
+                />
+              </svg>
+              <span>Exam Creation</span>
+            </div>
+            <div class="flex items-center justify-center space-x-2">
+              <svg
+                class="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                <path
+                  d="M12 14l6.16-3.422A12.083 12.083 0 0112 20.055a12.083 12.083 0 01-6.16-9.477L12 14z"
+                />
+              </svg>
+              <span>Results Analytics</span>
+            </div>
+          </div>
+
+          <button
+            onclick="window.location.href='admin/admin-login.html'"
+            class="w-full bg-blue-600 text-white px-4 py-2 rounded-md text-lg hover:bg-blue-700"
+          >
+            Admin Login
+          </button>
+        </div>
+
+        <!-- Student Portal Card -->
+        <div
+          class="bg-white rounded-lg p-6 shadow hover:shadow-lg transition-shadow duration-300 text-center"
+        >
+          <div class="flex justify-center mb-4">
+            <div class="bg-green-100 p-3 rounded-full">
+              <!-- GraduationCap Icon -->
+              <svg
+                class="h-8 w-8 text-green-600"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                <path
+                  d="M12 14l6.16-3.422A12.083 12.083 0 0112 20.055a12.083 12.083 0 01-6.16-9.477L12 14z"
+                />
+              </svg>
+            </div>
+          </div>
+          <h2 class="text-2xl font-semibold text-gray-800">Student Portal</h2>
+          <p class="text-gray-500 mb-6">
+            Take exams, view results, and track your academic progress
+          </p>
+
+          <div class="space-y-3 mb-6 text-gray-500 text-sm">
+            <div class="flex items-center justify-center space-x-2">
+              <svg
+                class="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M4 19.5A2.5 2.5 0 006.5 22h11a2.5 2.5 0 002.5-2.5V5.118a2 2 0 00-.765-1.58l-6-5a2 2 0 00-2.47 0l-6 5A2 2 0 004 5.118V19.5z"
+                />
+              </svg>
+              <span>Interactive Exams</span>
+            </div>
+            <div class="flex items-center justify-center space-x-2">
+              <svg
+                class="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                <path
+                  d="M12 14l6.16-3.422A12.083 12.083 0 0112 20.055a12.083 12.083 0 01-6.16-9.477L12 14z"
+                />
+              </svg>
+              <span>Instant Results</span>
+            </div>
+            <div class="flex items-center justify-center space-x-2">
+              <svg
+                class="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M17 21v-2a4 4 0 00-3-3.87M7 21v-2a4 4 0 013-3.87M12 7a4 4 0 110-8 4 4 0 010 8z"
+                />
+              </svg>
+              <span>Progress Tracking</span>
+            </div>
+          </div>
+
+          <button
+            onclick="window.location.href='student/StudentLogin.html'"
+            class="w-full border px-4 py-2 rounded-md text-lg text-gray-800 hover:bg-gray-100"
+          >
+            Student Login
+          </button>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center mt-12">
+        <p class="text-sm text-gray-500">
+          Demo Credentials: Admin - <b>admin1 / admin123</b> | Student -
+          <b>stud01 / 1234</b>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
