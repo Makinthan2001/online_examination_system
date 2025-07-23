@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Student Dashboard</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white min-h-screen font-sans text-gray-900">
+
+  <!-- Navbar -->
+  <nav class="bg-blue-600 text-white p-4 font-bold text-lg">
+    Student Portal Navbar
+  </nav>
+
+  <main class="container mx-auto px-4 py-8" id="dashboard-container">
+    <!-- Dashboard content will be rendered here by JS -->
+  </main>
+
+  <script>
+    // Simulated data (replace with real API calls as needed)
+    const user = {
+      username: 'stud01',
+      name: 'John Doe',
+      role: 'student',
+    };
+
+    const exams = [
+      { exam_id: 1, exam_name: 'Math Final', subject: 'Mathematics', duration: 60 },
+      { exam_id: 2, exam_name: 'Physics Midterm', subject: 'Physics', duration: 45 },
+      { exam_id: 3, exam_name: 'Chemistry Quiz', subject: 'Chemistry', duration: 30 },
+    ];
+
+    const results = [
+      { username: 'stud01', exam_id: 1, mark: 45, total_questions: 50, attempted_at: '2025-07-20T10:00:00Z' },
+      { username: 'stud01', exam_id: 3, mark: 25, total_questions: 30, attempted_at: '2025-07-22T14:30:00Z' },
+    ];
+
+    // Utility functions
+    function hasAttemptedExam(username, exam_id) {
+      return results.some(r => r.username === username && r.exam_id === exam_id);
+    }
+
+    function getResult(username, exam_id) {
+      return results.find(r => r.username === username && r.exam_id === exam_id);
+    }
+
+    function calculateAverageScore(username) {
+      const userResults = results.filter(r => r.username === username);
+      if (userResults.length === 0) return 0;
+      let totalPercent = 0;
+      for (const r of userResults) {
+        totalPercent += (r.mark / r.total_questions) * 100;
+      }
+      return Math.round(totalPercent / userResults.length);
+    }
+
+    // Rendering function
+    function renderDashboard() {
+      const container = document.getElementById('dashboard-container');
+      if (!user || user.role !== 'student') {
+        container.innerHTML = '<p class="text-red-600 font-semibold">Access denied. Please log in as a student.</p>';
+        return;
+      }
+
+      const averageScore = calculateAverageScore(user.username);
+      const completedExamsCount = results.filter(r => r.username === user.username).length;
+
+      container.innerHTML = `
+        <section class="mb-8">
+          <h1 class="text-3xl font-bold mb-2">Welcome, ${user.name || user.username}!</h1>
+          <p class="text-gray-600">Ready to take your examinations?</p>
+        </section>
+
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div class="bg-white border rounded-lg shadow p-6">
+            <p class="text-sm font-medium text-gray-500">Available Exams</p>
+            <p class="text-2xl font-bold">${exams.length}</p>
+          </div>
+          <div class="bg-white border rounded-lg shadow p-6">
+            <p class="text-sm font-medium text-gray-500">Completed Exams</p>
+            <p class="text-2xl font-bold">${completedExamsCount}</p>
+          </div>
+          <div class="bg-white border rounded-lg shadow p-6">
+            <p class="text-sm font-medium text-gray-500">Average Score</p>
+            <p class="text-2xl font-bold">${averageScore}%</p>
+          </div>
+        </section>
+
+        <section>
+          <h2 class="text-xl font-semibold mb-4">Available Examinations</h2>
+          ${exams.length === 0 ? `
+            <div class="bg-white border rounded-lg shadow p-12 text-center text-gray-600">
+              There are currently no examinations available. Please check back later.
+            </div>
+          ` : `
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              ${exams.map(exam => {
+                const attempted = hasAttemptedExam(user.username, exam.exam_id);
+                const result = getResult(user.username, exam.exam_id);
+                return `
+                  <div class="bg-white border rounded-lg shadow hover:shadow-md transition p-6 flex flex-col">
+                    <div class="flex justify-between items-start mb-4">
+                      <div>
+                        <h3 class="text-lg font-semibold">${exam.exam_name}</h3>
+                        <p class="text-gray-500">${exam.subject}</p>
+                      </div>
+                      <span class="
+                        text-sm px-2 py-1 rounded-full
+                        ${attempted ? 'border-green-600 text-green-600 border' : 'border-gray-400 text-gray-600 border'}
+                      ">
+                        ${attempted ? '✓ Completed' : '⏰ Available'}
+                      </span>
+                    </div>
+
+                    <p class="text-sm text-gray-600 mb-3">Duration: ${exam.duration} minutes</p>
+
+                    ${attempted && result ? `
+                      <div class="bg-gray-100 rounded p-3 mb-3 text-sm text-gray-700">
+                        Your Score: ${result.mark} / ${result.total_questions} (${Math.round((result.mark / result.total_questions) * 100)}%)<br/>
+                        Attempted on ${new Date(result.attempted_at).toLocaleDateString()}
+                      </div>
+                      <button class="mt-auto bg-white border border-blue-600 text-blue-600 font-semibold py-2 rounded hover:bg-blue-600 hover:text-white transition"
+                        onclick="window.location.href='/student/results'">
+                        View Result
+                      </button>
+                    ` : `
+                      <button class="mt-auto bg-blue-600 text-white font-semibold py-2 rounded hover:bg-blue-700 transition"
+                        onclick="window.location.href='/student/exam/${exam.exam_id}'">
+                        Start Exam
+                      </button>
+                    `}
+                  </div>
+                `;
+              }).join('')}
+            </div>
+          `}
+        </section>
+      `;
+    }
+
+    // Render on page load
+    window.addEventListener('DOMContentLoaded', renderDashboard);
+  </script>
+</body>
+</html>

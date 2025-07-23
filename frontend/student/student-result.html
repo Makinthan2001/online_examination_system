@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Exam Results</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white min-h-screen text-gray-800">
+
+  <div class="max-w-3xl mx-auto px-6 py-10">
+    <h1 class="text-3xl font-bold mb-6 text-center">📄 Your Exam Results</h1>
+
+    <div id="studentName" class="text-xl mb-4 font-semibold text-center text-blue-600"></div>
+
+    <table class="w-full border border-gray-300 rounded-lg shadow overflow-hidden">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="text-left px-4 py-2">Exam</th>
+          <th class="text-left px-4 py-2">Marks</th>
+        </tr>
+      </thead>
+      <tbody id="resultTable" class="bg-white divide-y divide-gray-200">
+        <!-- JS will insert rows -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Simulated: student username (e.g., from session/localStorage)
+    const loggedInUsername = "john_doe"; // Change as needed
+
+    // Simulated: result data from backend
+    const allResults = [
+      { username: "john_doe", exam: "Math Final", mark: 85 },
+      { username: "john_doe", exam: "Science Quiz", mark: 92 },
+      { username: "alex_kumar", exam: "Math Final", mark: 76 },
+    ];
+
+    // Filter for logged-in student
+    const studentResults = allResults.filter(result => result.username === loggedInUsername);
+
+    document.getElementById("studentName").textContent = `👤 Logged in as: ${loggedInUsername}`;
+
+    const resultTable = document.getElementById("resultTable");
+
+    if (studentResults.length === 0) {
+      resultTable.innerHTML = `<tr><td class="px-4 py-3 text-red-500" colspan="2">No results available.</td></tr>`;
+    } else {
+      studentResults.forEach(result => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td class="px-4 py-2">${result.exam}</td>
+          <td class="px-4 py-2 font-semibold">${result.mark}</td>
+        `;
+        resultTable.appendChild(row);
+      });
+    }
+  </script>
+
+</body>
+</html>

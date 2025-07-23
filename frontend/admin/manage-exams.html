@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Manage Exams</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="flex min-h-screen">
+    <!-- Sidebar (inline, not iframe) -->
+    <nav class="sidebar bg-white border-r" aria-label="Main Navigation" style="width:220px; min-width:220px; height:100vh; display:flex; flex-direction:column;">
+      <div class="sidebar-header font-bold text-2xl px-6 py-4 border-b">Online Exam</div>
+      <ul class="sidebar-menu flex-1 px-0 py-4" style="list-style:none; margin:0;">
+        <li tabindex="0" role="menuitem" aria-label="Dashboard" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='admin-dashboard.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" fill="#64748b"/></svg>
+          <span>Dashboard</span>
+        </li>
+        <li tabindex="0" role="menuitem" aria-label="Add Student" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='add-student.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="12" cy="7" r="4" stroke="#64748b" stroke-width="2"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Add Student</span>
+        </li>
+        <li tabindex="0" role="menuitem" aria-label="Manage Students" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='manage-students.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M4 4h16v2H4zm0 4h10v2H4zm0 4h16v2H4zm0 4h10v2H4z" fill="#64748b"/></svg>
+          <span>Manage Students</span>
+        </li>
+        <li tabindex="0" role="menuitem" aria-label="Create Exam" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='create-exam.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M19 3H5a2 2 0 0 0-2 2v14l4-4h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Create Exam</span>
+        </li>
+        <li tabindex="0" role="menuitem" aria-label="Manage Exams" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='manage-exams.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M5 13l4 4L19 7" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Manage Exams</span>
+        </li>
+        <li tabindex="0" role="menuitem" aria-label="Result" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='result.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M3 17a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4V7a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v10z" stroke="#64748b" stroke-width="2"/><path d="M8 11h8M8 15h6" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Result</span>
+        </li>
+      </ul>
+      <div class="px-6 pb-6 mt-auto">
+        <button onclick="logout()" class="w-full text-sm bg-red-100 text-red-600 px-3 py-2 rounded">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex-1">
+      <!-- Navbar -->
+      <nav class="bg-white shadow p-4 mb-6">
+        <div class="container mx-auto text-xl font-bold">Manage Exams</div>
+      </nav>
+      <div class="container mx-auto px-4 py-8">
+    <div class="flex justify-between items-center mb-8">
+      
+      <button onclick="window.location.href='create-exam.html'" class="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor"><use href="#plus"/></svg>
+        Create Exam
+      </button>
+    </div>
+
+    <div id="examList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+
+    <div id="emptyState" class="hidden">
+      <div class="bg-white text-center py-12 rounded shadow">
+        <svg class="h-12 w-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor"><use href="#book-open"/></svg>
+        <h3 class="text-lg font-medium mb-2">No Examinations Created</h3>
+        <p class="text-gray-500 mb-4">Create your first examination to get started.</p>
+        <button onclick="window.location.href='create-exam.html'" class="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor"><use href="#plus"/></svg>
+          Create First Exam
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Icons -->
+  <svg style="display: none;">
+    <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14m7-7H5"/></symbol>
+    <symbol id="edit" viewBox="0 0 24 24"><path d="M11 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2v-5"/></symbol>
+    <symbol id="clock" viewBox="0 0 24 24"><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="file-text" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></symbol>
+    <symbol id="book-open" viewBox="0 0 24 24"><path d="M2 7h20M12 7v13"/></symbol>
+  </svg>
+
+  <script>
+    function getExams() {
+      return JSON.parse(localStorage.getItem('exams') || '[]');
+    }
+
+    function getQuestions(examId) {
+      const all = JSON.parse(localStorage.getItem('questions') || '[]');
+      return all.filter(q => q.exam_id === examId);
+    }
+
+    function renderExams() {
+      const examList = document.getElementById('examList');
+      const emptyState = document.getElementById('emptyState');
+      const exams = getExams();
+
+      if (exams.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+
+      exams.forEach(exam => {
+        const questionCount = getQuestions(exam.exam_id).length;
+
+        const card = document.createElement('div');
+        card.className = 'bg-white p-5 rounded shadow hover:shadow-md transition-shadow';
+
+        card.innerHTML = `
+          <div class="flex justify-between items-start mb-4">
+            <div>
+              <h2 class="text-lg font-semibold">${exam.exam_name}</h2>
+              <p class="text-sm text-gray-500 mt-1">${exam.subject}</p>
+            </div>
+            <span class="text-xs px-2 py-1 rounded ${questionCount > 0 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}">
+              ${questionCount > 0 ? 'Ready' : 'Draft'}
+            </span>
+          </div>
+          <div class="text-sm text-gray-600 space-y-2 mb-3">
+            <div class="flex items-center">
+              <svg class="h-4 w-4 mr-2"><use href="#clock"/></svg>
+              Duration: ${exam.duration} minutes
+            </div>
+            <div class="flex items-center">
+              <svg class="h-4 w-4 mr-2"><use href="#file-text"/></svg>
+              Questions: ${questionCount}
+            </div>
+          </div>
+          ${questionCount === 0 ? `
+            <div class="bg-yellow-50 text-yellow-700 text-xs p-3 rounded mb-3">
+              This exam has no questions yet.
+            </div>
+          ` : ''}
+          <div class="flex space-x-2">
+            <button onclick="window.location.href='add-question.html?examId=${exam.exam_id}'"
+              class="flex-1 flex items-center justify-center border rounded px-3 py-2 text-sm hover:bg-gray-100">
+              <svg class="h-4 w-4 mr-1"><use href="#plus"/></svg>
+              Add Questions
+            </button>
+            <button onclick="window.location.href='edit-exam.html?examId=${exam.exam_id}'"
+              class="flex items-center justify-center border rounded px-3 py-2 text-sm hover:bg-gray-100">
+              <svg class="h-4 w-4"><use href="#edit"/></svg>
+            </button>
+          </div>
+        `;
+
+        examList.appendChild(card);
+      });
+    }
+
+    renderExams();
+  </script>
+</body>
+</html>

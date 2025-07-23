@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Create Exam</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="flex min-h-screen">
+    <!-- Sidebar (inline, not iframe) -->
+    <nav class="sidebar bg-white border-r" aria-label="Main Navigation" style="width:220px; min-width:220px; height:100vh; display:flex; flex-direction:column;">
+      <div class="sidebar-header font-bold text-2xl px-6 py-4 border-b">Online Exam</div>
+      <ul class="sidebar-menu flex-1 px-0 py-4" style="list-style:none; margin:0;">
+        <li tabindex="0" role="menuitem" aria-label="Dashboard" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='admin-dashboard.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z" fill="#64748b"/></svg>
+          <span>Dashboard</span>
+        </li>
+        
+        <li tabindex="0" role="menuitem" aria-label="Add Student" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='add-student.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="12" cy="7" r="4" stroke="#64748b" stroke-width="2"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Add Student</span>
+        </li>
+        <li tabindex="0" role="menuitem" aria-label="Manage Students" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='manage-students.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M4 4h16v2H4zm0 4h10v2H4zm0 4h16v2H4zm0 4h10v2H4z" fill="#64748b"/></svg>
+          <span>Manage Students</span>
+        </li>
+        <li tabindex="0" role="menuitem" aria-label="Create Exam" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='create-exam.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M19 3H5a2 2 0 0 0-2 2v14l4-4h12a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Create Exam</span>
+        </li>
+        <li tabindex="0" role="menuitem" aria-label="Manage Exams" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='manage-exams.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M5 13l4 4L19 7" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Manage Exams</span>
+        </li>
+        
+        <li tabindex="0" role="menuitem" aria-label="Result" class="px-6 py-3 flex items-center gap-3 cursor-pointer hover:bg-indigo-100 rounded transition" onclick="location.href='view-results.html'">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M3 17a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4V7a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v10z" stroke="#64748b" stroke-width="2"/><path d="M8 11h8M8 15h6" stroke="#64748b" stroke-width="2"/></svg>
+          <span>Result</span>
+        </li>
+      </ul>
+      <div class="px-6 pb-6 mt-auto">
+        <button onclick="logout()" class="w-full text-sm bg-red-100 text-red-600 px-3 py-2 rounded">Logout</button>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="flex-1">
+      <!-- Navbar -->
+      <nav class="bg-white shadow p-4 mb-6">
+        <div class="container mx-auto text-xl font-bold">Create Exam</div>
+      </nav>
+      <div class="container mx-auto px-4 py-8">
+    <button onclick="window.location.href='exams.html'" class="mb-6 text-blue-600 hover:underline flex items-center">
+      <svg class="h-4 w-4 mr-2" fill="none" stroke="currentColor" stroke-width="2"><use href="#arrow-left"/></svg>
+      Back to Exams
+    </button>
+
+    <div class="max-w-2xl mx-auto bg-white p-6 rounded shadow">
+      <div class="flex items-center mb-6 space-x-2">
+        <svg class="h-5 w-5 text-gray-600" fill="none" stroke="currentColor" stroke-width="2"><use href="#plus"/></svg>
+        <h2 class="text-xl font-semibold">Create New Examination</h2>
+      </div>
+
+      <form id="createExamForm" class="space-y-6">
+        <div>
+          <label for="exam_name" class="block text-sm font-medium">Examination Name *</label>
+          <input id="exam_name" type="text" required placeholder="e.g., Mathematics Final Exam" class="w-full border rounded px-3 py-2 mt-1"/>
+          <p class="text-xs text-gray-500 mt-1">Choose a descriptive name for your examination</p>
+        </div>
+
+        <div>
+          <label for="subject" class="block text-sm font-medium">Subject *</label>
+          <input id="subject" type="text" required placeholder="e.g., Mathematics, Science" class="w-full border rounded px-3 py-2 mt-1"/>
+          <p class="text-xs text-gray-500 mt-1">Subject category for this examination</p>
+        </div>
+
+        <div>
+          <label for="duration" class="block text-sm font-medium">Duration (minutes) *</label>
+          <input id="duration" type="number" required min="1" max="480" placeholder="e.g., 60" class="w-full border rounded px-3 py-2 mt-1"/>
+          <p class="text-xs text-gray-500 mt-1">Time limit for completing the exam (1–480 minutes)</p>
+        </div>
+
+        <div class="bg-gray-100 p-4 rounded">
+          <h4 class="font-medium mb-2">Next Step</h4>
+          <p class="text-sm text-gray-600">After creating the exam, you’ll be taken to add questions. You can always add more later.</p>
+        </div>
+
+        <div class="flex justify-end space-x-4">
+          <button type="button" onclick="window.location.href='exams.html'" class="px-4 py-2 border rounded text-gray-700 hover:bg-gray-100">Cancel</button>
+          <button type="submit" id="submitBtn" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Create Exam & Add Questions</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Icons -->
+  <svg style="display: none;">
+    <symbol id="plus" viewBox="0 0 24 24"><path d="M12 5v14m7-7H5"/></symbol>
+    <symbol id="arrow-left" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></symbol>
+  </svg>
+
+  <script>
+    document.getElementById('createExamForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const examName = document.getElementById('exam_name').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const duration = parseInt(document.getElementById('duration').value.trim());
+
+      if (duration < 1 || duration > 480) {
+        alert('Duration must be between 1 and 480 minutes.');
+        return;
+      }
+
+      const existingExams = JSON.parse(localStorage.getItem('exams') || '[]');
+      const examId = existingExams.length > 0
+        ? Math.max(...existingExams.map(e => e.exam_id)) + 1
+        : 1;
+
+      const newExam = {
+        exam_id: examId,
+        exam_name: examName,
+        subject: subject,
+        duration: duration
+      };
+
+      existingExams.push(newExam);
+      localStorage.setItem('exams', JSON.stringify(existingExams));
+
+      alert('Exam created successfully.');
+      window.location.href = `add-question.html?examId=${examId}`;
+    });
+  </script>
+</body>
+</html>
