@@ -4,6 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
   if (form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+      e.stopPropagation();
+      
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        return;
+      }
       
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value.trim();
