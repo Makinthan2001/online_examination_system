@@ -1,0 +1,101 @@
+/* Common Styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+/* Sidebar Styles */
+.sidebar {
+  width: 280px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  transition: width 0.3s;
+}
+
+.main-content {
+  margin-left: 280px;
+  padding: 20px;
+  width: calc(100% - 280px);
+  transition: margin-left 0.3s;
+}
+
+.nav-link {
+  border-radius: 4px;
+  margin-bottom: 4px;
+  transition: all 0.2s;
+}
+
+.nav-link:hover, .nav-link.active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Login Page */
+.login-container {
+  max-width: 400px;
+}
+
+.icon-wrapper {
+  width: 60px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(13, 110, 253, 0.1);
+  color: #0d6efd;
+  border-radius: 50%;
+}
+
+/* Dashboard */
+.exam-card {
+  transition: transform 0.2s, box-shadow 0.2s;
+  border-left: 4px solid #0d6efd;
+}
+
+.exam-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Exam Page */
+#timer {
+  font-family: monospace;
+  font-weight: bold;
+  background-color: #f8f9fa;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.question-card {
+  border-left: 4px solid #0d6efd;
+}
+
+/* Result Page */
+.correct-answer {
+  background-color: rgba(25, 135, 84, 0.1);
+  border-left: 4px solid #198754;
+}
+
+.incorrect-answer {
+  background-color: rgba(220, 53, 69, 0.1);
+  border-left: 4px solid #dc3545;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 80px;
+  }
+  .sidebar span {
+    display: none;
+  }
+  .main-content {
+    margin-left: 80px;
+    width: calc(100% - 80px);
+  }
+}

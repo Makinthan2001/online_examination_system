@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manage Exams</title>
+  <title>View Results</title>
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Font Awesome -->
@@ -27,11 +27,11 @@
           <i class="fas fa-users-cog"></i>
           <span>Manage Students</span>
         </li>
-        <li class="px-4 py-2 d-flex align-items-center gap-3 cursor-pointer hover-bg active-item" onclick="location.href='manage-exams.html'">
+        <li class="px-4 py-2 d-flex align-items-center gap-3 cursor-pointer hover-bg" onclick="location.href='manage-exams.html'">
           <i class="fas fa-tasks"></i>
           <span>Manage Exams</span>
         </li>
-        <li class="px-4 py-2 d-flex align-items-center gap-3 cursor-pointer hover-bg" onclick="location.href='results.html'">
+        <li class="px-4 py-2 d-flex align-items-center gap-3 cursor-pointer hover-bg active-item" onclick="location.href='results.html'">
           <i class="fas fa-chart-bar"></i>
           <span>Results</span>
         </li>
@@ -48,38 +48,43 @@
       <!-- Navbar -->
       <nav class="navbar bg-white shadow-sm mb-4">
         <div class="container-fluid">
-          <span class="navbar-brand fw-bold">Manage Exams</span>
+          <span class="navbar-brand fw-bold">Student Results</span>
         </div>
       </nav>
 
       <div class="container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-          <h1 class="h4 mb-0">Examination List</h1>
-          <a href="create-exam.html" class="btn btn-primary">
-            <i class="fas fa-plus me-1"></i> Create Exam
-          </a>
-        </div>
+        <!-- Results Table -->
+        <div class="card shadow-sm">
+          <div class="card-header bg-white d-flex align-items-center">
+            <i class="fas fa-chart-bar me-2"></i>
+            <h5 class="card-title mb-0">Exam Results (<span id="resultCount">0</span>)</h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead>
+                  <tr>
+                    <th>Username</th>
+                    <th>Exam Name</th>
+                    <th>Score</th>
+                    <th>Total Questions</th>
+                    <th>Date Attempted</th>
+                    <th class="text-end">Percentage</th>
+                  </tr>
+                </thead>
+                <tbody id="resultsTable"></tbody>
+              </table>
+            </div>
 
-        <div id="examList" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-          <!-- Exam cards will be dynamically inserted here by manage-exams.js -->
-          <!-- Each card will have:
-               - Exam name and subject
-               - Status badge (Ready/Draft)
-               - Duration and question count
-               - Add Questions button (primary)
-               - View/Edit/Delete buttons (secondary) 
-          -->
-        </div>
-
-        <div id="emptyState" class="text-center py-5 d-none">
-          <div class="card">
-            <div class="card-body py-5">
-              <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
-              <h5 class="card-title">No Examinations Created</h5>
-              <p class="card-text text-muted mb-4">Create your first examination to get started.</p>
-              <a href="create-exam.html" class="btn btn-primary">
-                <i class="fas fa-plus me-1"></i> Create First Exam
-              </a>
+            <!-- Empty State -->
+            <div id="emptyState" class="text-center py-5 d-none">
+              <div class="card border-0">
+                <div class="card-body py-5">
+                  <i class="fas fa-chart-pie fa-3x text-muted mb-3"></i>
+                  <h5 class="card-title">No Results Found</h5>
+                  <p class="card-text text-muted mb-4">Exam results will appear here once students complete exams</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -90,6 +95,6 @@
   <!-- Bootstrap JS Bundle with Popper -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <!-- Custom JS -->
-  <script src="javascript/manage-exams.js"></script>
+  <script src="javascript/view-results.js"></script>
 </body>
 </html>
