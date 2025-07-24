@@ -1,45 +1,52 @@
 document.addEventListener('DOMContentLoaded', function() {
-  // Check authentication
-  const studentSession = JSON.parse(localStorage.getItem('studentSession'));
-  if (!studentSession || !studentSession.loggedIn) {
-    window.location.href = 'StudentLogin.html';
-    return;
-  }
-
-  // Load sidebar first
+  // Load sidebar with correct path (from dashboard.html to partials/sidebar.html)
   fetch('partials/sidebar.html')
     .then(response => {
-      if (!response.ok) throw new Error('Network response was not ok');
+      if (!response.ok) throw new Error('Sidebar not found');
       return response.text();
     })
     .then(html => {
       document.getElementById('sidebar').innerHTML = html;
       
       // Set active link
-      const currentPage = window.location.pathname.split('/').pop();
-      const activeLink = document.querySelector(`.nav-link[href="${currentPage}"]`);
-      if (activeLink) {
-        activeLink.classList.add('active');
+      document.querySelector('#dashboardLink').classList.add('active');
+      
+      // Set student name if needed
+      const student = JSON.parse(localStorage.getItem('studentSession'));
+      if (student) {
+        document.getElementById('studentName').textContent = student.username;
       }
       
-      // Set student name
-      document.getElementById('studentName').textContent = studentSession.username;
+      // Initialize logout button
+      setupLogoutButton();
       
-      // Add logout handler
-      document.getElementById('logoutBtn').addEventListener('click', function(e) {
-        e.preventDefault();
-        localStorage.removeItem('studentSession');
-        localStorage.removeItem('examResults'); // Optional: Clear exam results on logout
-        window.location.href = 'login.html';
-      });
-
-      // Now load exams after sidebar is set up
+      // Load exams
       loadExams();
     })
     .catch(error => {
       console.error('Error loading sidebar:', error);
-      loadExams(); // Still try to load exams even if sidebar fails
+      document.getElementById('sidebar').innerHTML = `
+        <div class="alert alert-danger">
+          Navigation failed to load. <a href="dashboard.html">Refresh</a>
+        </div>
+      `;
+      loadExams();
     });
+
+  function setupLogoutButton() {
+    const logoutBtn = document.getElementById('logoutBtn');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Clear the student session
+        localStorage.removeItem('studentSession');
+        
+        // Redirect to login page
+        window.location.href = 'StudentLogin.html';
+      });
+    }
+  }
 
   function loadExams() {
     const exams = [
@@ -51,7 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const results = JSON.parse(localStorage.getItem('examResults')) || [];
     const examList = document.getElementById('examList');
 
-    // Clear existing content
     examList.innerHTML = '';
 
     exams.forEach(exam => {
@@ -73,7 +79,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </ul>
             ${!isAttempted ? 
               `<a href="exam.html?examId=${exam.id}" class="btn btn-primary btn-sm">Start Exam</a>` : 
-              `<a href="result.html?examId=${exam.id}" class="btn btn-outline-secondary btn-sm">View Result</a>`}
+              `<a href="my-result.html?examId=${exam.id}" class="btn btn-outline-secondary btn-sm">View Result</a>`}
           </div>
         </div>
       `;
