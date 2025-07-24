@@ -36,3 +36,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+// Add this to your existing auth.js file
+function setupLogoutButton() {
+  const logoutBtn = document.getElementById('logoutBtn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      // Clear the student session
+      localStorage.removeItem('studentSession');
+      
+      // Redirect to login page
+      window.location.href = 'StudentLogin.html';
+    });
+  }
+}
+
+// Call this function after loading the sidebar in each of your JS files
+// For example, in dashboard.js, exam.js, and my-result.js, after loading the sidebar:
+// Add this inside the .then() block after setting the sidebar HTML:
+setupLogoutButton();

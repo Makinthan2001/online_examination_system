@@ -1,38 +1,28 @@
-<div class="sidebar bg-primary text-white d-flex flex-column p-3">
-  <a href="#" class="d-flex align-items-center mb-3 text-white text-decoration-none">
-    <i class="fas fa-graduation-cap fs-4 me-2"></i>
-    <span class="fs-4">Student Portal</span>
-  </a>
-  <hr class="text-white">
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <a href="dashboard.html" class="nav-link text-white">
-        <i class="fas fa-tachometer-alt me-2"></i>
-        Dashboard
-      </a>
+<nav class="sidebar bg-white border-end d-flex flex-column">
+  <div class="sidebar-header fw-bold fs-4 px-4 py-3 border-bottom">
+    Online Exam
+  </div>
+  <ul class="sidebar-menu list-unstyled flex-grow-1 px-0 py-3">
+    <li class="px-4 py-2 d-flex align-items-center gap-3 cursor-pointer hover-bg" onclick="location.href='admin-dashboard.html'">
+      <i class="fas fa-tachometer-alt"></i>
+      <span>Dashboard</span>
     </li>
-    <li class="nav-item">
-      <a href="exam.html" class="nav-link text-white">
-        <i class="fas fa-book-open me-2"></i>
-        Exam
-      </a>
+    <li class="px-4 py-2 d-flex align-items-center gap-3 cursor-pointer hover-bg" onclick="location.href='manage-students.html'">
+      <i class="fas fa-users-cog"></i>
+      <span>Manage Students</span>
     </li>
-    <li class="nav-item">
-      <a href="my-result.html" class="nav-link text-white">
-        <i class="fas fa-chart-bar me-2"></i>
-        Results
-      </a>
+    <li class="px-4 py-2 d-flex align-items-center gap-3 cursor-pointer hover-bg" onclick="location.href='manage-exams.html'">
+      <i class="fas fa-tasks"></i>
+      <span>Manage Exams</span>
     </li>
-    <li class="nav-item">
-      <a href="#" class="nav-link text-white" id="logoutBtn">
-        <i class="fas fa-sign-out-alt me-2"></i>
-        Logout
-      </a>
+    <li class="px-4 py-2 d-flex align-items-center gap-3 cursor-pointer hover-bg" onclick="location.href='results.html'">
+      <i class="fas fa-chart-bar"></i>
+      <span>Results</span>
     </li>
   </ul>
-  <hr class="text-white">
-  <div class="text-center small">
-    <i class="fas fa-user me-1"></i>
-    <span id="studentName">Student</span>
+  <div class="px-4 pb-4 mt-auto">
+    <button id="logoutBtn" class="btn btn-sm btn-danger w-100">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
   </div>
-</div>
+</nav>

@@ -1,6 +1,7 @@
 /* Common Styles */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
 }
 
 .min-vh-100 {
@@ -16,77 +17,135 @@ body {
   top: 0;
   z-index: 1000;
   transition: width 0.3s;
+  background-color: #0d6efd;
+  color: white;
 }
 
 .main-content {
   margin-left: 280px;
-  padding: 20px;
+  padding: 2rem;
   width: calc(100% - 280px);
   transition: margin-left 0.3s;
+  background-color: white;
 }
 
 .nav-link {
   border-radius: 4px;
   margin-bottom: 4px;
   transition: all 0.2s;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .nav-link:hover, .nav-link.active {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
 }
 
-/* Login Page */
-.login-container {
-  max-width: 400px;
-}
+/* Exam Page Specific Styles */
 
-.icon-wrapper {
-  width: 60px;
-  height: 60px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(13, 110, 253, 0.1);
-  color: #0d6efd;
-  border-radius: 50%;
-}
 
-/* Dashboard */
-.exam-card {
-  transition: transform 0.2s, box-shadow 0.2s;
-  border-left: 4px solid #0d6efd;
-}
 
-.exam-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-/* Exam Page */
-#timer {
-  font-family: monospace;
-  font-weight: bold;
-  background-color: #f8f9fa;
-  padding: 0.5rem 1rem;
-  border-radius: 4px;
+#examTitle {
+  color: #2c3e50;
+  font-weight: 600;
 }
 
 .question-card {
+  border: 1px solid #e9ecef;
   border-left: 4px solid #0d6efd;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
-/* Result Page */
+.question-card .card-body {
+  padding: 1.5rem;
+}
+
+.question-card .card-title {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  font-weight: 500;
+}
+
+.question-card .card-text {
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+  color: #495057;
+  line-height: 1.6;
+}
+
+/* Grid Layout for Options */
+.question-card .options-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.option-item {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 0.75rem 1rem;
+  transition: all 0.2s;
+  border: 1px solid #dee2e6;
+}
+
+.option-item:hover {
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+}
+
+.form-check-input {
+  width: 1.1em;
+  height: 1.1em;
+  margin-top: 0.25em;
+  cursor: pointer;
+}
+
+.form-check-label {
+  font-size: 1rem;
+  padding-left: 0.6em;
+  cursor: pointer;
+  width: 100%;
+  display: inline-block;
+  color: #495057;
+}
+
+/* Submit Button Styling */
+#examForm button[type="submit"] {
+  font-size: 1.1rem;
+  padding: 0.8rem 1.5rem;
+  transition: all 0.3s;
+  background-color: #0d6efd;
+  border: none;
+  letter-spacing: 0.5px;
+}
+
+#examForm button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+  background-color: #0b5ed7;
+}
+
+/* Result Page Styles */
 .correct-answer {
-  background-color: rgba(25, 135, 84, 0.1);
+  background-color: rgba(25, 135, 84, 0.08);
   border-left: 4px solid #198754;
 }
 
 .incorrect-answer {
-  background-color: rgba(220, 53, 69, 0.1);
+  background-color: rgba(220, 53, 69, 0.08);
   border-left: 4px solid #dc3545;
 }
 
-/* Responsive */
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+  .question-card .options-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   .sidebar {
     width: 80px;
@@ -97,5 +156,38 @@ body {
   .main-content {
     margin-left: 80px;
     width: calc(100% - 80px);
+    padding: 1rem;
   }
+  
+  .question-card .card-body {
+    padding: 1rem;
+  }
+}
+
+/* Animation for better UX */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.question-card {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+/* Logout Button Styles */
+#logoutBtn {
+  transition: all 0.2s;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+#logoutBtn:hover {
+  background-color: #dc3545;
+  color: white;
+}
+
+/* Sidebar Spacer */
+.sidebar-spacer {
+  flex-grow: 1;
+  min-height: 20px; /* Minimum space */
 }
